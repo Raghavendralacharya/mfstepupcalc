@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutual Fund Step-Up Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Mutual Fund Step-Up Calculator</h1>
+            <p>Calculate your wealth growth with step-up SIP and initial lump sum investment</p>
+        </header>
+
+        <div class="calculator-container">
+            <div class="input-section">
+                <h2>Investment Details</h2>
+                <form id="calculatorForm" class="form">
+                    <div class="form-group">
+                        <label for="initialLumpSum">Initial Lump Sum Amount (₹)</label>
+                        <input type="number" id="initialLumpSum" value="0" placeholder="100000" min="0" step="1000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="initialSIP">Initial SIP Amount (₹)</label>
+                        <input type="number" id="initialSIP" value="5000" placeholder="5000" min="0" step="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stepUpPercentage">Step-Up Percentage (%)</label>
+                        <input type="number" id="stepUpPercentage" value="10" placeholder="10" min="0" max="100" step="0.1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stepUpFrequency">Step-Up Frequency</label>
+                        <select id="stepUpFrequency">
+                            <option value="12">Monthly</option>
+                            <option value="4">Quarterly</option>
+                            <option value="2">Half-Yearly</option>
+                            <option value="1" selected>Yearly</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="investmentTenure">Investment Tenure (Years)</label>
+                        <input type="number" id="investmentTenure" value="10" placeholder="10" min="1" max="50" step="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expectedReturns">Expected Annual Returns (%)</label>
+                        <input type="number" id="expectedReturns" value="12" placeholder="12" min="0" max="50" step="0.1">
+                    </div>
+
+                    <button type="submit" class="calculate-btn">Calculate</button>
+                </form>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <h2>Investment Analysis</h2>
+                
+                <div class="key-metrics">
+                    <div class="key-metric final-value">
+                        <h3>Final Value</h3>
+                        <p class="amount" id="finalValueHighlight">₹0</p>
+                    </div>
+                    <div class="key-metric total-returns">
+                        <h3>Total Returns</h3>
+                        <p class="amount" id="totalReturnsHighlight">₹0</p>
+                    </div>
+                </div>
+                
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <h3>Total Investment</h3>
+                        <p class="amount" id="totalInvestment">₹0</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Final Value</h3>
+                        <p class="amount" id="finalValue">₹0</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Total Returns</h3>
+                        <p class="amount" id="totalReturns">₹0</p>
+                    </div>
+                    <div class="summary-card">
+                        <h3>Return Percentage</h3>
+                        <p class="amount" id="returnPercentage">0%</p>
+                    </div>
+                </div>
+
+                <div class="breakdown-section">
+                    <h3>Investment Breakdown</h3>
+                    <div class="breakdown-cards">
+                        <div class="breakdown-card">
+                            <h4>Lump Sum Investment</h4>
+                            <p class="amount" id="lumpSumInvestment">₹0</p>
+                        </div>
+                        <div class="breakdown-card">
+                            <h4>SIP Investment</h4>
+                            <p class="amount" id="sipInvestment">₹0</p>
+                        </div>
+                        <div class="breakdown-card">
+                            <h4>Lump Sum Returns</h4>
+                            <p class="amount" id="lumpSumReturns">₹0</p>
+                        </div>
+                        <div class="breakdown-card">
+                            <h4>SIP Returns</h4>
+                            <p class="amount" id="sipReturns">₹0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-section">
+                    <h3>Investment Growth Chart</h3>
+                    <canvas id="growthChart"></canvas>
+                </div>
+
+                <div class="yearly-breakdown">
+                    <h3>Yearly Breakdown</h3>
+                    <div class="table-container">
+                        <table id="yearlyTable">
+                            <thead>
+                                <tr>
+                                    <th>Year</th>
+                                    <th>Annual SIP</th>
+                                    <th>Cumulative Investment</th>
+                                    <th>Investment Value</th>
+                                    <th>Returns</th>
+                                </tr>
+                            </thead>
+                            <tbody id="yearlyTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
