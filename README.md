@@ -1,5 +1,7 @@
 # Mutual Fund Step-Up Calculator
 
+link to website - https://sip-planner-five.vercel.app/
+
 A modern, responsive web application for calculating mutual fund investments with step-up SIP and initial lump sum features.
 
 ## Features
